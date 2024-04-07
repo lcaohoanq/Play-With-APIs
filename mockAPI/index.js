@@ -1,7 +1,7 @@
-const endpoint = "https://6512cbd2b8c6ce52b3963937.mockapi.io/users/";
+const endpoint = "https://6512cbd2b8c6ce52b3963937.mockapi.io/";
 
-async function demoGet() {
-  await fetch(endpoint)
+async function demoGet(id) {
+  await fetch(`${endpoint}/users/${id}`)
     .then((res) => {
       if (res.ok) {
         return res.json();
@@ -13,10 +13,11 @@ async function demoGet() {
     .catch((error) => console.log(error));
 }
 
-// demoGet();
+// demoGet("");
+// demoGet(1);
 
 async function demoPost() {
-  fetch(endpoint, {
+  fetch(`${endpoint}/users`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -33,3 +34,19 @@ async function demoPost() {
 }
 
 // demoPost();
+
+async function demoDelete(id) {
+  fetch(`${endpoint}/users/${id}`, {
+    method: "DELETE",
+  })
+    .then((res) => {
+      if (res.ok) {
+        console.log("Delete successfully");
+      } else {
+        console.log("Can't delete");
+      }
+    })
+    .catch((error) => console.log(error));
+}
+
+// demoDelete(1);
